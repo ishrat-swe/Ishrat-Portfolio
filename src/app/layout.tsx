@@ -14,9 +14,9 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Ishrat Jahan Rintu | Full Stack Developer",
+  title: "Ishrat Jahan Rintu | Software Engineer",
   description:
-    "Portfolio of Ishrat Jahan Rintu, Full Stack Developer focused on scalable web products and AI-enabled applications.",
+    "Portfolio of Ishrat Jahan Rintu, Software Engineer focused on scalable web products and AI-enabled applications.",
 };
 
 export default function RootLayout({
@@ -28,8 +28,9 @@ export default function RootLayout({
     <html lang='en'>
       <body
         className={`${manrope.variable} ${spaceGrotesk.variable} font-[var(--font-body)]`}>
+        <a href="#main-content" className="skip-link">Skip to content</a>
         <Navigation />
-        <div className='pt-16'>{children}</div>
+        {children}
       </body>
     </html>
   );

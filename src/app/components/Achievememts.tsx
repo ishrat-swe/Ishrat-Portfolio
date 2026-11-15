@@ -1,90 +1,30 @@
-"use client";
+import { achievements, certifications, ongoingCourses } from "@/data";
+import { Award, ArrowUpRight } from "lucide-react";
+import SectionHeading from "./SectionHeading";
 
-import { achievements, certifications } from "@/data";
-import { Award, AwardIcon } from "lucide-react";
-import { motion } from "framer-motion";
-
-const Achievements = () => {
+export default function Achievements() {
   return (
-    <section id='achievements' className='py-20 px-4'>
-      <div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.45 }}
-          className='text-center mb-16'>
-          <h2 className='font-[var(--font-display)] text-3xl md:text-4xl mb-4'>
-            <span className='shimmer-text'>Achievements & Certifications</span>
-          </h2>
-          <p className='text-lg text-[color:var(--muted)]'>
-            My accomplishments and professional certifications
-          </p>
-        </motion.div>
-
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-12'>
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.45 }}>
-            <h3 className='text-2xl font-semibold mb-6 flex items-center'>
-              <Award className='mr-3 text-[color:var(--primary)]' />
-              Achievements
-            </h3>
-            <div className='space-y-6'>
-              {achievements.map((achievement, index) => (
-                <motion.article
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.35, delay: index * 0.1 }}
-                  whileHover={{ y: -5, scale: 1.01 }}
-                  className='section-shell play-card p-6 rounded-2xl'>
-                  <h4 className='text-lg font-medium mb-2'>
-                    {achievement.title}
-                  </h4>
-                  <p className='text-[color:var(--muted)]'>
-                    {achievement.description}
-                  </p>
-                </motion.article>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.45 }}>
-            <h3 className='text-2xl font-semibold mb-6 flex items-center'>
-              <AwardIcon className='mr-3 text-[color:var(--secondary)]' />
-              Certifications
-            </h3>
-            <div className='space-y-6'>
-              {certifications.map((cert, index) => (
-                <motion.article
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.35, delay: index * 0.1 }}
-                  whileHover={{ y: -5, scale: 1.01 }}
-                  className='section-shell play-card p-6 rounded-2xl'>
-                  <h4 className='text-lg font-medium mb-2'>{cert.title}</h4>
-                  <p className='text-[color:var(--primary)] mb-2'>
-                    {cert.issuer}
-                  </p>
-                  <p className='text-[color:var(--muted)]'>{cert.year}</p>
-                </motion.article>
-              ))}
-            </div>
-          </motion.div>
+    <section id='achievements' className='section-band'>
+      <div className='section-wrap section-space'>
+        <SectionHeading number='05' eyebrow='Milestones' title='A few things along the way.' description='Recognition, challenges, and a commitment to keep learning.' />
+        <div className='recognition-grid'>
+          <div className='award-list'>{achievements.map((achievement, index) => <article className={`award-card ${index === 0 ? "award-featured" : ""}`} key={achievement.title}>
+            <Award size={index === 0 ? 30 : 20} strokeWidth={1.5} /><div>{index === 0 && <span className='eyebrow'>National recognition</span>}<h3>{achievement.title}</h3><p>{achievement.description}</p></div>
+          </article>)}</div>
+          <div className='certification-panel'>
+            <p className='eyebrow'>Always a student</p>
+            <h3>Courses & certifications</h3>
+            {ongoingCourses.map((course) => (
+              <article className='certificate-row' key={course.title}>
+                <div><h4>{course.title}</h4><p>{course.provider}</p></div>
+                <span>{course.status}</span>
+              </article>
+            ))}
+            {certifications.map((certificate) => <article className='certificate-row' key={certificate.title}><div><h4>{certificate.title}</h4><p>{certificate.issuer}</p></div><span>{certificate.year}</span></article>)}
+            <p className='certification-note'>Learning is part of the process. <ArrowUpRight size={14} /></p>
+          </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default Achievements;
+}

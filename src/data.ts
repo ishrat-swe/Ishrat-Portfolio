@@ -10,15 +10,14 @@ import {
 
 export const personalInfo = {
   name: "MST. ISHRAT JAHAN RINTU",
-  title: "Full Stack Developer",
+  title: "Software Engineer",
   email: "ishratjahanrintu72@gmail.com",
-  phone: "+880-1312289158",
   github: "Ishrat2413",
   linkedin: "ishrat-jahan-rintu-",
   location: "Dhaka, Bangladesh",
   about:
-    "Full Stack Developer experienced in building scalable web applications with React, Next.js, Node.js, NestJS, and TypeScript. Proficient in end-to-end development, database design, REST APIs, and integrating AI/ML features.",
-  portfolio: "#",
+    "Software Engineer experienced in building scalable web applications with React, Next.js, Node.js, NestJS, and TypeScript. Skilled in database design, hosting, REST APIs, and AI/ML integration. Currently studying AI and Machine Learning at Programming Hero.",
+  portfolio: "https://ishrat.me/",
 };
 
 export const projects: Project[] = [
@@ -45,6 +44,7 @@ export const projects: Project[] = [
       "Express.js",
       "MongoDB",
       "Flask",
+      "Machine Learning",
       "TensorFlow",
     ],
     highlights: [
@@ -59,7 +59,7 @@ export const projects: Project[] = [
     title: "The EchoSphere",
     description: "A news web application with full authentication flow.",
     technologies: ["React", "Node.js", "Firebase", "JavaScript"],
-    githubLink: "https://github.com/Ishrat2413/EchoSphere",
+    githubLink: "https://github.com/ishrat-swe/EchoSphere",
     liveLink: "https://the-echosphere.web.app",
   },
   {
@@ -82,7 +82,7 @@ export const projects: Project[] = [
     description:
       "A full MERN stack project showcasing JavaScript and modern frontend libraries.",
     technologies: ["MongoDB", "Express", "React", "Node.js"],
-    githubLink: "https://github.com/Ishrat2413/Craftopia-MERN-Stack",
+    githubLink: "https://github.com/ishrat-swe/Craftopia-MERN-Stack",
   },
   {
     title: "Destination Dairy",
@@ -189,7 +189,7 @@ export const projects: Project[] = [
       "Job application lifecycle tracking",
       "Secure authentication and authorization",
     ],
-    githubLink: "https://github.com/Ishrat2413/job-portal",
+    githubLink: "https://github.com/ishrat-swe/job-portal",
   },
   {
     title: "Car Doctor",
@@ -219,7 +219,7 @@ export const projects: Project[] = [
       "Score tracking with level progression",
       "Piece rotation and grid collision logic",
     ],
-    githubLink: "https://github.com/Ishrat2413/Tetris-PyGame",
+    githubLink: "https://github.com/ishrat-swe/Tetris-PyGame",
   },
   {
     title: "Brain MRI Segmentation",
@@ -238,7 +238,7 @@ export const projects: Project[] = [
       "Model evaluation for clinical-style accuracy metrics",
     ],
     githubLink:
-      "https://github.com/Ishrat2413/Brain-MRI-Segmentation-ML-Python-TensorFlow-U-Net-",
+      "https://github.com/ishrat-swe/Brain-MRI-Segmentation-ML-Python-TensorFlow-U-Net-",
   },
   {
     title: "Smart Agro-Care Robot",
@@ -275,7 +275,7 @@ export const projects: Project[] = [
       "Supports precision agriculture diagnostics",
     ],
     githubLink:
-      "https://github.com/Ishrat2413/Advanced-U-Net-Model-for-Plant-Disease-Segmentation",
+      "https://github.com/ishrat-swe/Advanced-U-Net-Model-for-Plant-Disease-Segmentation",
   },
 ];
 
@@ -283,7 +283,7 @@ export const experiences: Experience[] = [
   {
     role: "Full Stack Developer",
     company: "FB International BD",
-    period: "December 2025 – Present",
+    period: "December 2025 – June 2026",
     description: [
       "Built and maintained multiple full-stack applications using React/Next.js and Node.js/NestJS with REST APIs.",
       "Designed robust database architecture for SQL (MySQL/PostgreSQL) and NoSQL (MongoDB) workflows.",
@@ -295,11 +295,11 @@ export const experiences: Experience[] = [
 
 export const education: Education[] = [
   {
-    degree: "Bachelor of Computer Science and Engineering",
+    degree: "B.Sc. in Computer Science and Engineering",
     institution: "BRAC University",
     period: "2021 – 2025",
     location: "Dhaka, Bangladesh",
-    cgpa: "3.48 / 4.00",
+    cgpa: "3.50 / 4.00",
     thesis:
       "Developing a Programmable Advanced Machine Vision System for Industrial Product Quality Assurance",
     coursework: [
@@ -344,6 +344,14 @@ export const achievements: Achievement[] = [
     title: "Chemistry Olympiad - National Qualifier",
     description:
       "Qualified at the national level through strong performance in regional and national chemistry olympiad evaluations.",
+  },
+];
+
+export const ongoingCourses = [
+  {
+    title: "AI & Machine Learning",
+    provider: "Programming Hero",
+    status: "In progress",
   },
 ];
 

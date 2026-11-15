@@ -1,109 +1,25 @@
-"use client";
-
 import { skills, languages } from "@/data";
-import { motion } from "framer-motion";
+import { Braces, PanelsTopLeft, Server, Database, BrainCircuit, Wrench, Users } from "lucide-react";
+import SectionHeading from "./SectionHeading";
 
-const Skills = () => {
-  const levelToWidth = (level: string) => {
-    if (level === "Fluent") return "100%";
-    if (level === "Intermediate") return "72%";
-    return "45%";
-  };
+const icons = [Braces, PanelsTopLeft, Server, Database, BrainCircuit, Wrench, Users];
 
+export default function Skills() {
   return (
-    <section id='skills' className='py-20 px-4'>
-      <div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.45 }}
-          className='text-center mb-16'>
-          <h2 className='font-[var(--font-display)] text-3xl md:text-4xl mb-4'>
-            <span className='shimmer-text'>Skills & Languages</span>
-          </h2>
-          <p className='text-lg text-[color:var(--muted)]'>
-            Technologies I work with and languages I speak
-          </p>
-        </motion.div>
-
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-12'>
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.45 }}
-            whileHover={{ y: -4 }}
-            className='section-shell play-card rounded-3xl p-6'>
-            <h3 className='text-2xl font-semibold mb-6 text-center md:text-left'>
-              Technical Skills
-            </h3>
-            <div className='space-y-6'>
-              {skills.map((category, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.35, delay: index * 0.08 }}>
-                  <h4 className='text-lg font-medium mb-3 text-[color:var(--muted)]'>
-                    {category.name}
-                  </h4>
-                  <div className='flex flex-wrap gap-3'>
-                    {category.skills.map((skill, skillIndex) => (
-                      <span
-                        key={skillIndex}
-                        className='px-4 py-2 bg-white/60 dark:bg-black/25 rounded-full text-sm font-medium border border-emerald-900/10 hover:border-emerald-500/50'>
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.45 }}
-            whileHover={{ y: -4 }}
-            className='section-shell play-card rounded-3xl p-6'>
-            <h3 className='text-2xl font-semibold mb-6 text-center md:text-left'>
-              Languages
-            </h3>
-            <div className='space-y-6'>
-              {languages.map((language, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.38, delay: index * 0.1 }}>
-                  <div className='flex justify-between items-center mb-2'>
-                    <span className='font-medium'>{language.name}</span>
-                    <span className='text-sm text-[color:var(--primary)]'>
-                      {language.level}
-                    </span>
-                  </div>
-                  <div className='w-full bg-white/50 dark:bg-black/30 rounded-full h-2.5 overflow-hidden'>
-                    <motion.div
-                      className='h-2.5 rounded-full bg-gradient-to-r from-emerald-500 to-blue-400'
-                      initial={{ width: 0 }}
-                      whileInView={{ width: levelToWidth(language.level) }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: index * 0.12 }}
-                    />
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+    <section id='skills' className='section-band'>
+      <div className='section-wrap section-space'>
+        <SectionHeading number='02' eyebrow='What I work with' title='The tools behind the thinking.' description='From the interface you interact with to the systems that make it work. A practical, end-to-end toolkit.' />
+        <div className='skills-grid'>
+          {skills.map((group, index) => {
+            const Icon = icons[index % icons.length];
+            return <article key={group.name} className={`skill-group ${group.name === "Soft Skills" ? "skill-group-wide" : ""}`}>
+              <div className='skill-group-title'><Icon size={19} strokeWidth={1.6} /><h3>{group.name}</h3><span>{String(index + 1).padStart(2, "0")}</span></div>
+              <div className='tech-list'>{group.skills.map((skill) => <span key={skill}>{skill}</span>)}</div>
+            </article>;
+          })}
         </div>
+        <div className='languages-row'><p>Beyond the code<span>Languages I speak</span></p><div>{languages.map((language) => <span className='language-item' key={language.name}><strong>{language.name}</strong><span>{language.level}</span></span>)}</div></div>
       </div>
     </section>
   );
-};
-
-export default Skills;
+}

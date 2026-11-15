@@ -1,40 +1,55 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import { MoonStar, SunMedium } from "lucide-react";
 import { motion } from "framer-motion";
 
+function subscribeToTheme(onChange: () => void) {
+  const observer = new MutationObserver(onChange);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+  return () => observer.disconnect();
+}
+
 const ThemeToggle = () => {
-  const [isDark, setIsDark] = useState(false);
+  const isDark = useSyncExternalStore(
+    subscribeToTheme,
+    () => document.documentElement.classList.contains("dark"),
+    () => false,
+  );
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    const systemPrefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)",
-    ).matches;
+    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
+    const syncTheme = () => {
+      let savedTheme: string | null = null;
+      try {
+        savedTheme = localStorage.getItem("theme");
+      } catch {
+        // Theme switching also works when browser storage is unavailable.
+      }
+      const prefersDark =
+        savedTheme === "dark" ||
+        (savedTheme !== "light" && systemTheme.matches);
+      document.documentElement.classList.toggle("dark", prefersDark);
+    };
 
-    if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
-      setIsDark(true);
-      document.documentElement.classList.add("dark");
-      //   console.log('Applied dark theme');
-    } else {
-      //   console.log('Applied light theme');
-    }
+    syncTheme();
+    systemTheme.addEventListener("change", syncTheme);
+    window.addEventListener("storage", syncTheme);
+    return () => {
+      systemTheme.removeEventListener("change", syncTheme);
+      window.removeEventListener("storage", syncTheme);
+    };
   }, []);
 
   const toggleTheme = () => {
-    // console.log('Toggle clicked');
-    const newIsDark = !isDark;
-    setIsDark(newIsDark);
-
-    if (newIsDark) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-      //   console.log('Switched to dark theme');
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-      //   console.log('Switched to light theme');
+    const newIsDark = document.documentElement.classList.toggle("dark");
+    try {
+      localStorage.setItem("theme", newIsDark ? "dark" : "light");
+    } catch {
+      // Keep the selected theme for this page when storage is unavailable.
     }
   };
 
@@ -42,8 +57,9 @@ const ThemeToggle = () => {
     <motion.button
       onClick={toggleTheme}
       whileTap={{ scale: 0.92 }}
-      className='p-2 rounded-full border border-emerald-900/15 bg-white/60 dark:bg-black/20 hover:soft-ring'
-      aria-label='Toggle theme'>
+      className='inset-panel p-2 rounded-full hover:border-[color:var(--primary)]'
+      aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
+      aria-pressed={isDark}>
       {isDark ? <SunMedium size={18} /> : <MoonStar size={18} />}
     </motion.button>
   );

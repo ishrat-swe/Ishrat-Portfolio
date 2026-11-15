@@ -12,7 +12,7 @@ const blobs = [
 
 const AnimatedBackdrop = () => {
   return (
-    <div className='fixed inset-0 pointer-events-none -z-10 overflow-hidden'>
+    <div className='fixed inset-0 pointer-events-none -z-10 overflow-hidden opacity-30 dark:opacity-100'>
       <div className='absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(14,124,102,0.1),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(255,120,71,0.1),transparent_30%)]' />
 
       {blobs.map((blob, index) => (

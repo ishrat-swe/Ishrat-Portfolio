@@ -2,16 +2,13 @@
 
 import { personalInfo } from "@/data";
 import {
-  Mail,
-  Phone,
   MapPin,
   Send,
   Github,
   Linkedin,
-  MessageCircle,
+  ArrowUpRight,
 } from "lucide-react";
 import { useState } from "react";
-import { motion } from "framer-motion";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -71,176 +68,26 @@ const Contact = () => {
   };
 
   return (
-    <section id='contact' className='py-20 px-4'>
-      <div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.45 }}
-          className='text-center mb-16'>
-          <h2 className='font-[var(--font-display)] text-3xl md:text-4xl mb-4'>
-            <span className='shimmer-text'>Get In Touch</span>
-          </h2>
-          <p className='text-lg text-[color:var(--muted)]'>
-            I would love to hear from you. Lets work together!
-          </p>
-        </motion.div>
-
-        <div className='grid grid-cols-1 lg:grid-cols-2 gap-12'>
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.45 }}
-            whileHover={{ y: -4 }}
-            className='section-shell play-card rounded-3xl p-6 sm:p-8'>
-            <h3 className='text-2xl font-semibold mb-6'>Contact Information</h3>
-
-            <div className='space-y-6'>
-              <div className='flex items-start'>
-                <Mail className='h-6 w-6 text-[color:var(--primary)] mr-4 mt-1' />
-                <div>
-                  <h4 className='text-lg font-medium'>Email</h4>
-                  <a
-                    href={`mailto:${personalInfo.email}`}
-                    className='text-[color:var(--muted)] hover:text-[color:var(--primary)]'>
-                    {personalInfo.email}
-                  </a>
-                </div>
-              </div>
-
-              <div className='flex items-start'>
-                <Phone className='h-6 w-6 text-[color:var(--primary)] mr-4 mt-1' />
-                <div>
-                  <h4 className='text-lg font-medium'>Phone</h4>
-                  <a
-                    href={`tel:${personalInfo.phone}`}
-                    className='text-[color:var(--muted)] hover:text-[color:var(--primary)]'>
-                    {personalInfo.phone}
-                  </a>
-                </div>
-              </div>
-
-              <div className='flex items-start'>
-                <MapPin className='h-6 w-6 text-[color:var(--primary)] mr-4 mt-1' />
-                <div>
-                  <h4 className='text-lg font-medium'>Location</h4>
-                  <p className='text-[color:var(--muted)]'>
-                    {personalInfo.location}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className='mt-8'>
-              <h4 className='text-lg font-medium mb-4'>Connect with me</h4>
-              <div className='flex space-x-4'>
-                <a
-                  href={`https://github.com/${personalInfo.github}`}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='play-card p-3 border border-emerald-900/15 rounded-lg hover:bg-[color:var(--primary)] hover:text-white'>
-                  <span className='sr-only'>GitHub</span>
-                  <Github />
-                </a>
-                <a
-                  href={`https://linkedin.com/in/${personalInfo.linkedin}`}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='play-card p-3 border border-emerald-900/15 rounded-lg hover:bg-[color:var(--primary)] hover:text-white'>
-                  <span className='sr-only'>LinkedIn</span>
-                  <Linkedin />
-                </a>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.45 }}
-            whileHover={{ y: -4 }}
-            className='section-shell play-card rounded-3xl p-6 sm:p-8'>
-            <form onSubmit={handleSubmit} className='space-y-6'>
-              <div>
-                <label
-                  htmlFor='name'
-                  className='block text-sm font-medium mb-2 text-[color:var(--muted)]'>
-                  Name
-                </label>
-                <input
-                  type='text'
-                  id='name'
-                  name='name'
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className='w-full px-4 py-3 border border-emerald-900/15 rounded-lg bg-white/50 dark:bg-black/20 focus:outline-none focus:soft-ring'
-                  placeholder='Your Name'
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor='email'
-                  className='block text-sm font-medium mb-2 text-[color:var(--muted)]'>
-                  Email
-                </label>
-                <input
-                  type='email'
-                  id='email'
-                  name='email'
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className='w-full px-4 py-3 border border-emerald-900/15 rounded-lg bg-white/50 dark:bg-black/20 focus:outline-none focus:soft-ring'
-                  placeholder='your.email@example.com'
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor='message'
-                  className='block text-sm font-medium mb-2 text-[color:var(--muted)]'>
-                  Message
-                </label>
-                <textarea
-                  id='message'
-                  name='message'
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className='w-full px-4 py-3 border border-emerald-900/15 rounded-lg bg-white/50 dark:bg-black/20 focus:outline-none focus:soft-ring'
-                  placeholder='Your message here...'></textarea>
-              </div>
-
-              <button
-                type='submit'
-                disabled={isSending}
-                className='w-full bg-[color:var(--primary)] text-white py-3 px-6 rounded-lg hover:brightness-110 transition-colors flex items-center justify-center'>
-                <MessageCircle size={20} className='mr-2' />
-                {isSending ? "Sending..." : "Send Message"}
-              </button>
-
-              {statusMessage && (
-                <p
-                  className={`text-sm ${submitSuccess ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"}`}>
-                  {statusMessage}
-                </p>
-              )}
-
-              <a
-                href={`mailto:${personalInfo.email}`}
-                className='inline-flex items-center gap-2 text-sm text-[color:var(--muted)] hover:text-[color:var(--primary)]'>
-                <Send size={15} />
-                Prefer email? Send directly
-              </a>
-            </form>
-          </motion.div>
+    <section id='contact' className='contact-section'>
+      <div className='section-wrap contact-grid'>
+        <div className='contact-copy'>
+          <p className='eyebrow'><span>08</span> Start a conversation</p>
+          <h2>Something in mind?<br /><span>Let’s build it.</span></h2>
+          <p>Have a project, a role, or an interesting idea? I would love to hear about it.</p>
+          <a className='contact-email' href={`mailto:${personalInfo.email}`}>{personalInfo.email}<ArrowUpRight size={20} /></a>
+          <span className='contact-location'><MapPin size={15} /> {personalInfo.location}</span>
+          <div className='contact-socials'><a href={`https://github.com/${personalInfo.github}`} target='_blank' rel='noopener noreferrer'><Github size={17} /> GitHub <ArrowUpRight size={13} /></a><a href={`https://linkedin.com/in/${personalInfo.linkedin}`} target='_blank' rel='noopener noreferrer'><Linkedin size={17} /> LinkedIn <ArrowUpRight size={13} /></a></div>
         </div>
+        <form onSubmit={handleSubmit} className='contact-form'>
+          <h3>A good conversation starts here.</h3>
+          <div className='form-row'>
+            <div><label htmlFor='name'>Your name</label><input id='name' name='name' autoComplete='name' placeholder='Jane Doe' value={formData.name} onChange={handleChange} required maxLength={120} className='form-field' /></div>
+            <div><label htmlFor='email'>Email address</label><input type='email' id='email' name='email' autoComplete='email' placeholder='jane@example.com' value={formData.email} onChange={handleChange} required maxLength={254} className='form-field' /></div>
+          </div>
+          <div><label htmlFor='message'>What are you thinking?</label><textarea id='message' name='message' placeholder='A little about your project or idea…' value={formData.message} onChange={handleChange} required maxLength={5000} rows={5} className='form-field' /></div>
+          <div className='form-bottom'><span>Prefer your inbox? <a href={`mailto:${personalInfo.email}`}>Email me directly</a></span><button type='submit' disabled={isSending} className='button button-primary'>{isSending ? "Sending…" : "Send message"}<Send size={16} /></button></div>
+          <div aria-live='polite' aria-atomic='true'>{statusMessage && <p className={`form-status ${submitSuccess ? "status-success" : "status-error"}`}>{statusMessage}</p>}</div>
+        </form>
       </div>
     </section>
   );

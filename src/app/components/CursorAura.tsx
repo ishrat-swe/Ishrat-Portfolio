@@ -35,7 +35,7 @@ const CursorAura = () => {
   return (
     <>
       <motion.div
-        className='pointer-events-none fixed top-0 left-0 z-[60] w-44 h-44 rounded-full blur-3xl bg-emerald-400/25 dark:bg-emerald-300/20'
+        className='pointer-events-none fixed top-0 left-0 z-[60] w-44 h-44 rounded-full blur-3xl bg-emerald-500/10 dark:bg-emerald-300/20'
         style={{ x: softX, y: softY, translateX: "-50%", translateY: "-50%" }}
       />
       <motion.div

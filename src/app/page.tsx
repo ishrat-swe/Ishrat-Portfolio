@@ -6,15 +6,12 @@ import Education from "./components/Education";
 import Contact from "./components/Contact";
 import Achievements from "./components/Achievememts";
 import Leadership from "./components/Leadership";
-import CursorAura from "./components/CursorAura";
-import AnimatedBackdrop from "./components/AnimatedBackdrop";
+import Footer from "./components/Footer";
 import InteractivePlayground from "./components/InteractivePlayground";
 
 export default function Home() {
   return (
-    <main className='min-h-screen transition-colors duration-300'>
-      <AnimatedBackdrop />
-      <CursorAura />
+    <main id='main-content' tabIndex={-1}>
       <Hero />
       <Projects />
       <Skills />
@@ -22,8 +19,9 @@ export default function Home() {
       <Education />
       <Achievements />
       <Leadership />
-      <Contact />
       <InteractivePlayground />
+      <Contact />
+      <Footer />
     </main>
   );
 }
